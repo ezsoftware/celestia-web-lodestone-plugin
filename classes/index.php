@@ -1,0 +1,3 @@
+<?php
+
+import('api.php');
