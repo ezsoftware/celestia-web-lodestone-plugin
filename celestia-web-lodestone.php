@@ -9,7 +9,7 @@
 
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
-import('./classes/index.php');
+require('./classes/index.php');
  
 class CW_Lodestone {    
   function __construct() {

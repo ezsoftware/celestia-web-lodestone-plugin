@@ -1,3 +1,3 @@
 <?php
 
-import('api.php');
+require('api.php');
