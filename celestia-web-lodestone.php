@@ -1,5 +1,13 @@
 <?php
-  defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
+/**
+ * Plugin Name: Lodestone Scraper
+ * Description: Lodestone Scraper by Celestia FC on Hyperion
+ * Version: 0.1 (05/15/2017)
+ * Author: John Ryan - EZ Software Inc
+ * Author URI: http://www.example.com
+ */
+
+defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
 import('./classes/index.php');
  
