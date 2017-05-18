@@ -6,10 +6,10 @@ class CW_Scraper {
   static $instance = null;
   static $search_url = 'http://na.finalfantasyxiv.com/lodestone/character/?q={first_name}+{last_name}&worldname={server}';
   public static function getInstance() {
-    if($instance === null) {
-      $instance = new CW_Scraper();
+    if(self::$instance === null) {
+      self::$instance = new CW_Scraper();
     }
-    return $instance;
+    return self::$instance;
   }
   private function __construct() {
 

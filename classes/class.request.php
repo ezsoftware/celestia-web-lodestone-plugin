@@ -3,10 +3,10 @@
 class CW_Request {
   static $instance = null;
   public static function getInstance() {
-    if($instance === null) {
-      $instance = new Request();
+    if(self::$instance === null) {
+      self::$instance = new CW_Request();
     }
-    return $instance;
+    return self::$instance;
   }
   private function __construct() {
 

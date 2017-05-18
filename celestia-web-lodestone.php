@@ -17,10 +17,10 @@ require('classes/index.php');
 class CW_Lodestone {    
   static $instance = null;
   public static function getInstance() {
-    if($instance === null) {
-      $instance = new CW_Lodestone();
+    if(self::$instance === null) {
+      self::$instance = new CW_Lodestone();
     }
-    return $instance;
+    return self::$instance;
   }
   private function __construct() {
     CW_Api::getInstance();
