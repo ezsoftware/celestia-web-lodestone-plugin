@@ -12,7 +12,46 @@ class CW_Scraper {
     return self::$instance;
   }
   private function __construct() {
+	libxml_use_internal_errors(true);
+  }
 
+  private function search_character_id($dom) {
+    $e_finder = new DomXPath($dom);
+    $nodes = $e_finder->query('//a[starts-with(@href, "/lodestone/character/")]');
+    $node = $nodes->item(0);
+    $characterUrl = $node->getAttribute('href');
+    $chunks = explode('/', $characterUrl);
+    return $chunks[3];
+  }
+
+  private function search_character_face($dom) {
+    $e_finder = new DomXPath($dom);
+    $nodes = $e_finder->query('//div[@class="entry__chara__face"]/img');
+    $node = $nodes->item(0);
+    return $node->getAttribute('src');
+  }
+
+  private function search_character_name($dom) {
+    $e_finder = new DomXPath($dom);
+    $nodes = $e_finder->query('//p[@class="entry__name"]');
+    $node = $nodes->item(0);
+    return $node->nodeValue;
+  }
+
+  private function search_character_world($dom) {
+    $e_finder = new DomXPath($dom);
+    $nodes = $e_finder->query('//p[@class="entry__world"]');
+    $node = $nodes->item(0);
+    return $node->nodeValue;
+  }
+  
+  private function search_character_free_company($dom) {
+    $e_finder = new DomXPath($dom);
+    $nodes = $e_finder->query('//a[@class="entry__freecompany__link"]/span');
+    $node = $nodes->item(0);
+    if(isset($node))
+      return $node->nodeValue;
+    return "";
   }
 
   public function search($firstName, $lastName, $server = '') {
@@ -24,12 +63,19 @@ class CW_Scraper {
     $dom = new DOMDocument();
     $dom->loadHTML($html);
     $finder = new DomXPath($dom);
-    $nodes = $finder->query('//*[contains(@class, "entry")]');
-    $tmp_dom = new DomDocument();
+    $nodes = $finder->query('//div[@class="entry"]');
+    $results = array();
     foreach($nodes as $node) {
+	  $tmp_dom = new DomDocument();
       $tmp_dom->appendChild($tmp_dom->importNode($node, true));
+      $results[] = array(
+        'id' => $this->search_character_id($tmp_dom),
+        'face' => $this->search_character_face($tmp_dom),
+        'name' => $this->search_character_name($tmp_dom),
+        'world' => $this->search_character_world($tmp_dom),
+        'free_company' => $this->search_character_free_company($tmp_dom)
+      );
     }
-    $resultHTML = trim($tmp_dom->saveHTML());
-    return $resultHTML;
+    return $results;
   }
 }

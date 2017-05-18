@@ -20,7 +20,7 @@ class CW_Api {
   }
 
   function register_actions() {
-    self::addAction('cw_validateCharacterName');
+    self::addAction('cw_searchCharacter');
   }
 
   private function addAction($action) {
@@ -35,10 +35,11 @@ class CW_Api {
     return $value;
   }
 
-  public function cw_validateCharacterName() {
+  public function cw_searchCharacter() {
     $scraper = CW_Scraper::getInstance();
     $response = $scraper->search($this->getQS('first_name'), $this->getQS('last_name'), $this->getQS('server'));
-    echo $response;
+    $res_str = json_encode($response);
+	  echo $res_str;
     wp_die();
   }
 }

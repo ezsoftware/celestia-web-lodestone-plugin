@@ -14,10 +14,13 @@ class CW_Request {
 
   private function getResponse($url, $ops = array()) {
     $curl = curl_init();
-    $final_ops = array_merge(array(
+    $final_ops = array(
       CURLOPT_URL => $url,
-      CURLOPT_RETURNTRANSFER => 1
-    ), $ops);
+      CURLOPT_RETURNTRANSFER => TRUE,
+      CURLOPT_USERAGENT => '5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36',
+      CURLOPT_SSL_VERIFYPEER => FALSE,
+      CURLOPT_SSL_VERIFYHOST => FALSE
+    ) + $ops;
     curl_setopt_array($curl, $final_ops);
     $response = curl_exec($curl);
     curl_close($curl);
