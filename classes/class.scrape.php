@@ -15,8 +15,7 @@ class CW_Scraper {
 
   }
 
-  public function search($firstName, $lastName, $server) {
-    $server = $server ?: '';
+  public function search($firstName, $lastName, $server = '') {
     $url = str_replace('{first_name}', $firstName, self::$search_url);
     $url = str_replace('{last_name}', $lastName, $url);
     $url = str_replace('{server}', $server, $url);

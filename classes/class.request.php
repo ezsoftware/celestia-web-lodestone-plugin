@@ -12,8 +12,7 @@ class CW_Request {
 
   }
 
-  private function getResponse($url, $ops) {
-    $ops = $ops ?: array();
+  private function getResponse($url, $ops = array()) {
     $curl = curl_init();
     $final_ops = array_merge(array(
       CURLOPT_URL => $url,

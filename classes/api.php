@@ -28,8 +28,7 @@ class CW_Api {
     add_action("wp_ajax_nopriv_$action", array($this, $action));
   }
 
-  private function getQS($key, $default) {
-    $default = $default ?: '';
+  private function getQS($key, $default = "") {
     $value = $default;
     if(isset($_GET[$key]))
       $value = $_GET[$key];
