@@ -21,6 +21,7 @@ class CW_Api {
 
   function register_actions() {
     self::addAction('cw_searchCharacter');
+    self::addAction('cw_getCharacterProfile');
   }
 
   private function addAction($action) {
@@ -39,7 +40,15 @@ class CW_Api {
     $scraper = CW_Scraper::getInstance();
     $response = $scraper->search($this->getQS('first_name'), $this->getQS('last_name'), $this->getQS('server'));
     $res_str = json_encode($response);
-	  echo $res_str;
+    echo $res_str;
+    wp_die();
+  }
+
+  public function cw_getCharacterProfile() {
+    $scraper = CW_Scraper::getInstance();
+    $response = $scraper->get_character_profile($this->getQS('character_id'));
+    $res_str = json_encode($response);
+    echo $res_str;
     wp_die();
   }
 }
