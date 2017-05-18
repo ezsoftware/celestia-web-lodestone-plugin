@@ -1,7 +1,16 @@
 <?php
 
-class CW_Api {
-  function __construct() {
+require_once 'class.scrape.php';
+
+class CW_Api {  
+  static $instance = null;
+  public static function getInstance() {
+    if($instance === null) {
+      $instance = new CW_Api();
+    }
+    return $instance;
+  }
+  private function __construct() {
     $this->register_filters();
     $this->register_actions();
   }
@@ -11,8 +20,18 @@ class CW_Api {
   }
 
   function register_actions() {
-    add_action( 'wp_ajax_cw_validateCharacterName', array($this, 'cw_validateCharacterName') );
+    self::addAction('cw_validateCharacterName');
+  }
+
+  private function addAction($action) {
+    add_action("wp_ajax_$action", array($this, $action));
+    add_action("wp_ajax_nopriv_$action", array($this, $action));
+  }
+
+  public function cw_validateCharacterName() {
+    $scraper = CW_Scraper::getInstance();
+    $response = $scraper->search($_GET['first_name'], $_GET['last_name'], $_GET['server']);
+    echo $response;
+    wp_die();
   }
 }
-
-new CW_Api();

@@ -12,9 +12,16 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 require('classes/index.php');
  
 class CW_Lodestone {    
-  function __construct() {
-
+  static $instance = null;
+  public static function getInstance() {
+    if($instance === null) {
+      $instance = new CW_Lodestone();
+    }
+    return $instance;
+  }
+  private function __construct() {
+    CW_Api::getInstance();
   }
 } 
 
-new CW_Lodestone();
+CW_Lodestone::getInstance();
