@@ -25,7 +25,9 @@ class CW_Scraper {
 
   private function findNode($dom, $query) {
     $nodes = $this->findNodes($dom, $query);
-    return $nodes->item(0);
+	if($nodes)
+		return $nodes->item(0);
+	return null;
   }
   
   private function getNodeValue($dom, $query) {
@@ -59,11 +61,11 @@ class CW_Scraper {
     return $classes;
   }
 
-  public function search($firstName, $lastName, $server = '') {
+  public function search($first_name, $last_name, $server = '') {
     $results = array();
     $page = 1;
-    $url = str_replace('{first_name}', $firstName, self::$search_url);
-    $url = str_replace('{last_name}', $lastName, $url);
+    $url = str_replace('{first_name}', $first_name, self::$search_url);
+    $url = str_replace('{last_name}', $last_name, $url);
     $url = str_replace('{server}', $server, $url);
     $request = CW_Request::getInstance();
     do{
@@ -88,8 +90,8 @@ class CW_Scraper {
     return $results;
   }
 
-  public function get_character_profile($characterId) {
-    $url = str_replace('{character_id}', $characterId, self::$profile_url);
+  public function get_character_profile($character_id) {
+    $url = str_replace('{character_id}', $character_id, self::$profile_url);
     $request = CW_Request::getInstance();
     $html = $request->get($url);
     $dom = new DOMDocument();
@@ -112,7 +114,7 @@ class CW_Scraper {
     $url = str_replace('{free_company_id}', $free_company_id, self::$fc_members_url);
     $request = CW_Request::getInstance();
     do{
-      $html = $request->get($url . '&page=' . $page);
+      $html = $request->get($url . '?page=' . $page);
       $dom = new DOMDocument();
       $dom->loadHTML($html);
       $finder = new DomXPath($dom);
@@ -122,11 +124,11 @@ class CW_Scraper {
         $tmp_dom->appendChild($tmp_dom->importNode($node, true));
         $results[] = array(
           'character_id' => $this->search_character_id($tmp_dom),
-          'face' => $this->getNodeAttribute($tmp_dom, '//div[@class="entry__chara__face"]/img', src),
+          'face' => $this->getNodeAttribute($tmp_dom, '//div[@class="entry__chara__face"]/img', 'src'),
           'name' => $this->getNodeValue($tmp_dom, '//p[@class="entry__name"]'),
           'world' => $this->getNodeValue($tmp_dom, '//p[@class="entry__world"]'),
-          'rank_icon' => $this->getNodeAttribute($tmp_dom, '//ul[@class="entry_freecompany_info]/li/img'),
-          'rank' => $this->getNodeValue($tmp_dom, '//ul[@class="entry_freecompany_info"]/li/span')
+          'rank_icon' => $this->getNodeAttribute($tmp_dom, '//ul[@class="entry__freecompany__info"]/li/img', 'src'),
+          'rank' => $this->getNodeValue($tmp_dom, '//ul[@class="entry__freecompany__info"]/li/span')
         );
       }
       $page++;
