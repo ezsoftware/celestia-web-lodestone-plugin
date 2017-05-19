@@ -1,11 +1,12 @@
 <?php
-
+// Celestia ID: 9236742098248532608
 require_once 'class.request.php';
 
 class CW_Scraper {
   static $instance = null;
   static $search_url = 'http://na.finalfantasyxiv.com/lodestone/character/?q={first_name}+{last_name}&worldname={server}';
   static $profile_url = 'http://na.finalfantasyxiv.com/lodestone/character/{character_id}/';
+  static $fc_members_url = 'http://na.finalfantasyxiv.com/lodestone/freecompany/{free_company_id}/member/';
   public static function getInstance() {
     if(self::$instance === null) {
       self::$instance = new CW_Scraper();
@@ -47,20 +48,15 @@ class CW_Scraper {
     return $chunks[3];
   }
 
-  private function search_character_face($dom) {
-    return $this->getNodeAttribute($dom, '//div[@class="entry__chara__face"]/img', 'src');
-  }
-
-  private function search_character_name($dom) {
-    return $this->getNodeValue($dom, '//p[@class="entry__name"]');
-  }
-
-  private function search_character_world($dom) {
-    return $this->getNodeValue($dom, '//p[@class="entry__world"]');
-  }
-  
-  private function search_character_free_company($dom) {
-    return $this->getNodeValue($dom, '//a[@class="entry__freecompany__link"]/span');
+  private function get_character_class_levels($dom) {
+    $classes = array();
+    $nodes = $this->findNodes($dom, '//div[@class="character__level__list"]/ul/li');
+    foreach($nodes as $node) {
+      $tmp_dom = new DomDocument();
+      $tmp_dom->appendChild($tmp_dom->importNode($node, true));
+      $classes[$this->getNodeAttribute($tmp_dom, '//img', 'data-tooltip')] = trim($node->nodeValue);
+    }
+    return $classes;
   }
 
   public function search($firstName, $lastName, $server = '') {
@@ -81,50 +77,15 @@ class CW_Scraper {
         $tmp_dom->appendChild($tmp_dom->importNode($node, true));
         $results[] = array(
           'id' => $this->search_character_id($tmp_dom),
-          'face' => $this->search_character_face($tmp_dom),
-          'name' => $this->search_character_name($tmp_dom),
-          'world' => $this->search_character_world($tmp_dom),
-          'free_company' => $this->search_character_free_company($tmp_dom)
+          'face' => $this->getNodeAttribute($dom, '//div[@class="entry__chara__face"]/img', 'src'),
+          'name' => $this->getNodeValue($dom, '//p[@class="entry__name"]'),
+          'world' => $this->getNodeValue($dom, '//p[@class="entry__world"]'),
+          'free_company' => $this->getNodeValue($dom, '//a[@class="entry__freecompany__link"]/span')
         );
       }
       $page++;
     } while($nodes->length > 0);
     return $results;
-  }
-
-  private function get_character_class($dom) {
-    return $this->getNodeAttribute($dom, '//img', 'data-tooltip');
-  }
-
-  private function get_character_class_levels($dom) {
-    $classes = array();
-    $nodes = $this->findNodes($dom, '//div[@class="character__level__list"]/ul/li');
-    foreach($nodes as $node) {
-      $tmp_dom = new DomDocument();
-      $tmp_dom->appendChild($tmp_dom->importNode($node, true));
-      $classes[$this->get_character_class($tmp_dom)] = trim($node->nodeValue);
-    }
-    return $classes;
-  }
-
-
-  private function get_character_free_company($dom) {
-    return $this->getNodeValue($dom, '//div[@class="character__freecompany__name"]/h4/a');
-  }
-  private function get_character_name($dom) {
-    return $this->getNodeValue($dom, '//p[@class="frame__chara__name"]');
-  }
-  private function get_character_title($dom) {
-    return $this->getNodeValue($dom, '//p[@class="frame__chara__title"]');
-  }
-  private function get_character_world($dom) {
-    return $this->getNodeValue($dom, '//p[@class="frame__chara__world"]');
-  }
-  private function get_character_face($dom) {
-    return $this->getNodeAttribute($dom, '//div[@class="frame__chara__face"]/img', 'src');
-  }
-  private function get_character_image($dom) {
-    return $this->getNodeAttribute($dom, '//div[@class="character__detail__image"]/a/img', 'src');
   }
 
   public function get_character_profile($characterId) {
@@ -134,14 +95,40 @@ class CW_Scraper {
     $dom = new DOMDocument();
     $dom->loadHTML($html);
     $result = array(
-      'name' => $this->get_character_name($dom),
-      'title' => $this->get_character_title($dom),
-      'world' => $this->get_character_world($dom),
+      'name' => $this->getNodeValue($dom, '//p[@class="frame__chara__name"]'),
+      'title' => $this->getNodeValue($dom, '//p[@class="frame__chara__title"]'),
+      'world' => $this->getNodeValue($dom, '//p[@class="frame__chara__world"]'),
       'classes' => $this->get_character_class_levels($dom),
-      'free_company' => $this->get_character_free_company($dom),
-      'face' => $this->get_character_face($dom),
-      'image' => $this->get_character_image($dom)
+      'free_company' => $this->getNodeValue($dom, '//div[@class="character__freecompany__name"]/h4/a'),
+      'face' => $this->getNodeAttribute($dom, '//div[@class="frame__chara__face"]/img', 'src'),
+      'image' => $this->getNodeAttribute($dom, '//div[@class="character__detail__image"]/a/img', 'src')
     );
     return $result;
+  }
+
+  public function get_member_list($free_company_id) {
+    $url = str_replace('{free_company_id}', $free_company_id, self::$fc_members_url);
+    $request = CW_Request::getInstance();
+    do{
+      $html = $request->get($url . '&page=' . $page);
+      $dom = new DOMDocument();
+      $dom->loadHTML($html);
+      $finder = new DomXPath($dom);
+      $nodes = $finder->query('//li[@class="entry"]');
+      foreach($nodes as $node) {
+        $tmp_dom = new DomDocument();
+        $tmp_dom->appendChild($tmp_dom->importNode($node, true));
+        $results[] = array(
+          'character_id' => $this->search_character_id($tmp_dom),
+          'face' => $this->getNodeAttribute($tmp_dom, '//div[@class="entry__chara__face"]/img', src),
+          'name' => $this->getNodeValue($tmp_dom, '//p[@class="entry__name"]'),
+          'world' => $this->getNodeValue($tmp_dom, '//p[@class="entry__world"]'),
+          'rank_icon' => $this->getNodeAttribute($tmp_dom, '//ul[@class="entry_freecompany_info]/li/img'),
+          'rank' => $this->getNodeValue($tmp_dom, '//ul[@class="entry_freecompany_info"]/li/span')
+        );
+      }
+      $page++;
+    } while($nodes->length > 0);
+    return $results;
   }
 }
