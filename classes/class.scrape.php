@@ -107,6 +107,8 @@ class CW_Scraper {
   }
 
   public function get_member_list($free_company_id) {
+    $results = array();
+    $page = 1;
     $url = str_replace('{free_company_id}', $free_company_id, self::$fc_members_url);
     $request = CW_Request::getInstance();
     do{
