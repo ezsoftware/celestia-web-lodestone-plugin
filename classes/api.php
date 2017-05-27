@@ -34,9 +34,9 @@ class CW_Api {
   private function getQS($key, $default = "") {
     $value = $default;
     if(isset($_GET[$key]))
-      $value = $_GET[$key];
+      $value = $_GET[$key].replace('{apostrophe}', '\'');
     if(isset($_POST[$key]))
-      $value = $_POST[$key];
+      $value = $_POST[$key].replace('{apostrophe}', '\'');
     return $value;
   }
 
