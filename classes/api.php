@@ -35,6 +35,8 @@ class CW_Api {
     $value = $default;
     if(isset($_GET[$key]))
       $value = $_GET[$key];
+    if(isset($_POST[$key]))
+      $value = $_POST[$key];
     return $value;
   }
 
