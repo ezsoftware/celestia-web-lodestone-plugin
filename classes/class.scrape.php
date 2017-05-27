@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 // Celestia ID: 9236742098248532608
 require_once 'class.request.php';
 
