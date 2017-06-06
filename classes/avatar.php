@@ -24,10 +24,13 @@ class CW_LS_Avatar {
     var_dump($id_or_email);
     var_dump($args);
     $mediaId = get_user_meta($id_or_email, 'avatar_media_id', true);
-    $nick = get_user_meta($id_or_email, 'nickname', true);
     $avatar_url = wp_get_attachment_image_url($mediaId);
     if($avatar_url) {
-      $avatar = '<img alt="' . $nick . '" src="' . $avatar_url . '" srcset="' . $avatar_url . '" class="avatar avatar-96 photo" height="96" width="96">';
+      $size = $args['size'];
+      $width = $args['width'];
+      $height = $args['height'];
+      $alt = $args['alt'];
+      $avatar = "<img alt='$alt' src='$avatar_url' srcset='$avatar_url' class='avatar avatar-$size photo' height='$height' width='$width'>";
     }
     return $avatar;
   }
