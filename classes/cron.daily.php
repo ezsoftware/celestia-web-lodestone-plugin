@@ -10,8 +10,6 @@ class CW_Cron_Daily {
     return self::$instance;
   }
   private function __construct() {
-    register_activation_hook(__FILE__, array('CW_Cron_Daily', 'register_cron_hook'));
-    register_deactivation_hook(__FILE__, array('CW_Cron_Daily', 'deregister_cron_hook'));
     add_action('cw_lodestone_daily_data_sync', array($this, 'do_daily_data_sync'));
   }
 
