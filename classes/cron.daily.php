@@ -1,6 +1,8 @@
 <?php
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
+require_once('class.scrape.php');
+
 class CW_Cron_Daily {  
   static $instance = null;
   public static function getInstance() {
@@ -28,7 +30,8 @@ class CW_Cron_Daily {
     foreach($users as $user_id) {
       $characterId = get_user_meta($user_id->ID, 'character_id', true);
       if($characterId) {
-        $characterData = apply_filters('cw-lodestone-get-character', null, $characterId);
+        $scraper = CW_Scraper::getInstance();
+        $characterData = $scraper->get_character_profile($characterId);
         update_user_meta($user_id->ID, 'character_profile', $characterData);
       }
     }
