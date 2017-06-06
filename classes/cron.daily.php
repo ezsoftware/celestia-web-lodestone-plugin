@@ -102,6 +102,6 @@ class CW_LS_Cron_Daily {
   }
 
   private function is_user_in_role( $user_id, $role  ) {
-    return in_array( $role, get_user_roles_by_user_id( $user_id ) );
+    return in_array( $role, self::get_user_roles_by_user_id( $user_id ) );
   }
 }
