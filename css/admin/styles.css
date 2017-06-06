@@ -1,0 +1,52 @@
+li.player-box {
+    height: 100px;
+}
+
+.player-box > img {
+    border-radius: 20%;
+    box-shadow: 0px 0px 8px RGBA(255,255,255,0.9);
+    border: 2px solid RGBA(0,0,0,0.9);
+    vertical-align: top;
+    float: left;
+}
+
+.player-box > span {
+    font-weight: bold;
+    font-size: 1em;
+    display: block;
+    padding-left: 120px;
+    line-height: 26px;
+}
+
+.player-box > span.player-name {
+    font-size: 1.4em;
+}
+
+.player-box > span.player-world::before {
+    content: 'Server: ';
+}
+
+.player-box > span.player-fc::before {
+    content: 'FC: ';
+}
+
+.player-box > div.player-classes {
+    float: left;
+    clear: both;
+}
+
+span.job-class {
+    width: 143px;
+    display: inline-block;
+    margin: 0;
+    font-size: 0.9em;
+    white-space: nowrap;
+    font-weight: bold;
+    border-right: 1px dotted RGBA(128,128,128,1);
+    border-bottom: 1px dotted RGBA(128,128,128,1);
+}
+
+span.job-class > span {
+    display: block;
+    text-align: center;
+}

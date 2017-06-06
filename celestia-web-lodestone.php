@@ -26,6 +26,17 @@ class CW_LS_Lodestone {
     CW_LS_Classes::getInstance();
     register_activation_hook(__FILE__, array('CW_LS_Cron_Daily', 'register_cron_hook'));
     register_deactivation_hook(__FILE__, array('CW_LS_Cron_Daily', 'deregister_cron_hook'));
+
+    add_action( 'wp_enqueue_scripts', array($this, 'enqueue_styles') );
+    add_action( 'admin_enqueue_scripts', array($this, 'admin_enqueue_styles') );
+  }
+
+  public function enqueue_styles() {
+
+	}
+
+  public function admin_enqueue_styles() {
+    wp_enqueue_style( 'cw_ls_admin-style', plugin_dir_url(__FILE__) . 'css/admin/styles.css');
   }
 } 
 
