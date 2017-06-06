@@ -22,22 +22,34 @@ class CW_Actions {
 
   public function get_character_profile($character_data, $character_id) {
     $scraper = CW_Scraper::getInstance();
-    $character_data = $scraper->get_character_profile($character_id);
+    $new_data = $scraper->get_character_profile($character_id);
 
-    return $character_data;
+    if($character_data != null) {
+      $new_data = array_replace($character_data, $new_data);
+    }
+
+    return $new_data;
   }
 
   public function get_free_company_list($fc_data, $free_company_id) {
     $scraper = CW_Scraper::getInstance();
-    $fc_data = $scraper->get_member_list($free_company_id);
+    $new_data = $scraper->get_member_list($free_company_id);
+
+    if($fc_data != null) {
+      $new_data = array_replace($fc_data, $new_data);
+    }
 
     return $fc_data;
   }
 
   public function search_character($search_data, $first_name, $last_name, $world) {
     $scraper = CW_Scraper::getInstance();
-    $search_data = $scraper->search($first_name, $last_name, $world);
+    $new_data = $scraper->search($first_name, $last_name, $world);
 
-    return $search_data;
+    if($search_data != null) {
+      $new_data = array_replace($search_data, $new_data);
+    }
+
+    return $new_data;
   }
 }
