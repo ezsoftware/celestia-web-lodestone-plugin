@@ -49,6 +49,7 @@ class CW_LS_Cron_Daily {
         update_user_meta($user_id, 'nickname', $characterData['name']);
         $avatar->update_user_avatar($characterData['face'], $user_id);
         $member_data = self::get_member_rank($fc_member_list, $character_id);
+        var_dump($member_data);
         $rank = 'ally';
         if($member_data != null) {
           $rank = self::role_to_stub($member_data['rank']);
