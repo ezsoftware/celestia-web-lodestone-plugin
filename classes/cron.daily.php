@@ -49,14 +49,10 @@ class CW_LS_Cron_Daily {
         update_user_meta($user_id, 'nickname', $characterData['name']);
         $avatar->update_user_avatar($characterData['face'], $user_id);
         $member_data = self::get_member_rank($fc_member_list, $character_id);
-        echo 'member_data ';
-        var_dump($member_data);
         $rank = 'ally';
         if($member_data != null) {
           $rank = self::role_to_stub($member_data['rank']);
         }
-        echo 'rank ';
-        var_dump($rank);
         if(!self::is_user_in_role($user_id, $rank)) {
           $u = new WP_User($user_id);
           $user_roles = self::get_user_roles_by_user_id($user_id);
@@ -89,6 +85,7 @@ class CW_LS_Cron_Daily {
     $role = strtolower($role);
     $role = str_replace(' ', '_', $role);
     $role = preg_replace('[^0-9a-z_]', '', $role);
+    return $role;
   }
 
   private function get_member_rank($fc_member_list, $character_id) {
