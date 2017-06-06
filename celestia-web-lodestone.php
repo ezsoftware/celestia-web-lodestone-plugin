@@ -23,11 +23,9 @@ class CW_Lodestone {
     return self::$instance;
   }
   private function __construct() {
-    CW_Api::getInstance();
-    CW_Cron_Daily::getInstance();
+    CW_Classes::getInstance();
     register_activation_hook(__FILE__, array('CW_Cron_Daily', 'register_cron_hook'));
     register_deactivation_hook(__FILE__, array('CW_Cron_Daily', 'deregister_cron_hook'));
-    CW_GeneralSettings::getInstance();
   }
 } 
 
