@@ -27,8 +27,10 @@ class CW_Cron_Daily {
     $users = get_users(array('fields' => array('ID')));
     foreach($users as $user_id) {
       $characterId = get_user_meta($user_id->ID, 'character_id', true);
-      $characterData = apply_filters('cw-lodestone-get-character', null, $characterId);
-      update_user_meta($user_id->ID, 'character_profile', $characterData);
+      if($characterId) {
+        $characterData = apply_filters('cw-lodestone-get-character', null, $characterId);
+        update_user_meta($user_id->ID, 'character_profile', $characterData);
+      }
     }
   }
 }
