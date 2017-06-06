@@ -3,14 +3,14 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 // Celestia ID: 9236742098248532608
 require_once 'class.request.php';
 
-class CW_Scraper {
+class CW_LS_Scraper {
   static $instance = null;
   static $search_url = 'http://na.finalfantasyxiv.com/lodestone/character/?q={first_name}+{last_name}&worldname={server}';
   static $profile_url = 'http://na.finalfantasyxiv.com/lodestone/character/{character_id}/';
   static $fc_members_url = 'http://na.finalfantasyxiv.com/lodestone/freecompany/{free_company_id}/member/';
   public static function getInstance() {
     if(self::$instance === null) {
-      self::$instance = new CW_Scraper();
+      self::$instance = new CW_LS_Scraper();
     }
     return self::$instance;
   }
@@ -68,7 +68,7 @@ class CW_Scraper {
     $url = str_replace('{first_name}', $first_name, self::$search_url);
     $url = str_replace('{last_name}', $last_name, $url);
     $url = str_replace('{server}', $server, $url);
-    $request = CW_Request::getInstance();
+    $request = CW_LS_Request::getInstance();
     do{
       $html = $request->get($url . '&page=' . $page);
       $dom = new DOMDocument();
@@ -93,7 +93,7 @@ class CW_Scraper {
 
   public function get_character_profile($character_id) {
     $url = str_replace('{character_id}', $character_id, self::$profile_url);
-    $request = CW_Request::getInstance();
+    $request = CW_LS_Request::getInstance();
     $html = $request->get($url);
     $dom = new DOMDocument();
     $dom->loadHTML($html);
@@ -113,7 +113,7 @@ class CW_Scraper {
     $results = array();
     $page = 1;
     $url = str_replace('{free_company_id}', $free_company_id, self::$fc_members_url);
-    $request = CW_Request::getInstance();
+    $request = CW_LS_Request::getInstance();
     do{
       $html = $request->get($url . '?page=' . $page);
       $dom = new DOMDocument();

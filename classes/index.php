@@ -8,17 +8,17 @@ require_once 'avatar.php';
 
 require_once 'admin/index.php';
 
-class CW_Classes {  
+class CW_LS_Classes {  
   static $instance = null;
   public static function getInstance() {
     if(self::$instance === null) {
-      self::$instance = new CW_Classes();
+      self::$instance = new CW_LS_Classes();
     }
     return self::$instance;
   }
   private function __construct() {
-    CW_Api::getInstance();
-    CW_Cron_Daily::getInstance();
-    CW_GeneralSettings::getInstance();
+    CW_LS_Api::getInstance();
+    CW_LS_Cron_Daily::getInstance();
+    CW_LS_GeneralSettings::getInstance();
   }
 }

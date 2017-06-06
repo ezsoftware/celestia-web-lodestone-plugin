@@ -1,11 +1,11 @@
 <?php
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
-class CW_Request {
+class CW_LS_Request {
   static $instance = null;
   public static function getInstance() {
     if(self::$instance === null) {
-      self::$instance = new CW_Request();
+      self::$instance = new CW_LS_Request();
     }
     return self::$instance;
   }

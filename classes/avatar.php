@@ -1,11 +1,11 @@
 <?php
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
-class CW_Avatar {  
+class CW_LS_Avatar {  
   static $instance = null;
   public static function getInstance() {
     if(self::$instance === null) {
-      self::$instance = new CW_Avatar();
+      self::$instance = new CW_LS_Avatar();
     }
     return self::$instance;
   }

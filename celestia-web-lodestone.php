@@ -14,19 +14,19 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
 require('classes/index.php');
  
-class CW_Lodestone {    
+class CW_LS_Lodestone {    
   static $instance = null;
   public static function getInstance() {
     if(self::$instance === null) {
-      self::$instance = new CW_Lodestone();
+      self::$instance = new CW_LS_Lodestone();
     }
     return self::$instance;
   }
   private function __construct() {
-    CW_Classes::getInstance();
+    CW_LS_Classes::getInstance();
     register_activation_hook(__FILE__, array('CW_Cron_Daily', 'register_cron_hook'));
     register_deactivation_hook(__FILE__, array('CW_Cron_Daily', 'deregister_cron_hook'));
   }
 } 
 
-CW_Lodestone::getInstance();
+CW_LS_Lodestone::getInstance();

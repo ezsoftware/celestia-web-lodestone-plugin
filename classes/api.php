@@ -3,11 +3,11 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
 require_once 'class.scrape.php';
 
-class CW_Api {  
+class CW_LS_Api {  
   static $instance = null;
   public static function getInstance() {
     if(self::$instance === null) {
-      self::$instance = new CW_Api();
+      self::$instance = new CW_LS_Api();
     }
     return self::$instance;
   }
@@ -41,7 +41,7 @@ class CW_Api {
   }
 
   public function cw_searchCharacter() {
-    $scraper = CW_Scraper::getInstance();
+    $scraper = CW_LS_Scraper::getInstance();
     $response = $scraper->search($this->getQS('first_name'), $this->getQS('last_name'), $this->getQS('server'));
     $res_str = json_encode($response);
     echo $res_str;
@@ -49,7 +49,7 @@ class CW_Api {
   }
 
   public function cw_getCharacterProfile() {
-    $scraper = CW_Scraper::getInstance();
+    $scraper = CW_LS_Scraper::getInstance();
     $response = $scraper->get_character_profile($this->getQS('character_id'));
     $res_str = json_encode($response);
     echo $res_str;
@@ -57,7 +57,7 @@ class CW_Api {
   }
 
   public function cw_getMemberList() {
-    $scraper = CW_Scraper::getInstance();
+    $scraper = CW_LS_Scraper::getInstance();
     $response = $scraper->get_member_list($this->getQS('free_company_id'));
     $res_str = json_encode($response);
     echo $res_str;

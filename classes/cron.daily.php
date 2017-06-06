@@ -4,11 +4,11 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 require_once('class.scrape.php');
 require_once('avatar.php');
 
-class CW_Cron_Daily {  
+class CW_LS_Cron_Daily {  
   static $instance = null;
   public static function getInstance() {
     if(self::$instance === null) {
-      self::$instance = new CW_Cron_Daily();
+      self::$instance = new CW_LS_Cron_Daily();
     }
     return self::$instance;
   }
@@ -30,8 +30,8 @@ class CW_Cron_Daily {
     if(!class_exists('WP_User')) {
       require_once(ABSPATH . 'wp-includes/class-wp-user.php');
     }
-    $scraper = CW_Scraper::getInstance();
-    $avatar = CW_Avatar::getInstance();
+    $scraper = CW_LS_Scraper::getInstance();
+    $avatar = CW_LS_Avatar::getInstance();
     $fc_id = get_option( 'fc_lodestone_id', '' );
     $fc_member_list = $scraper->get_member_list($fc_id);
     update_option('fc_member_data', $fc_member_list);
