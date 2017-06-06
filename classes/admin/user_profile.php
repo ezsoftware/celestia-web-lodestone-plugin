@@ -36,7 +36,7 @@ class CW_LS_UserProfile {
           <?php
             if($user_data == null) {
             ?>
-              <h2>Lodestone not yet found, please wait</h2>
+              <h2>Lodestone data not found for character.</h2>
             <?php
             } else { 
           ?>
