@@ -32,7 +32,3 @@ class CW_Cron_Daily {
     }
   }
 }
-
-
-register_activation_hook(__FILE__, array('CW_Cron_Daily', 'register_cron_hook'));
-register_deactivation_hook(__FILE__, array('CW_Cron_Daily', 'deregister_cron_hook'));
