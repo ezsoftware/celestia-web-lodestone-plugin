@@ -26,7 +26,7 @@ class CW_LS_UserProfile {
     <table class="form-table">
 
       <tr>
-        <th><label for="character_data">Lodestone Character Profile Data</label></th>
+        <th><label for="character_data">Lodestone Character Data</label></th>
 
         <td>
           <?php

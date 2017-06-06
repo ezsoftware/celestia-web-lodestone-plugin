@@ -1,5 +1,5 @@
 li.player-box {
-    height: 100px;
+    height: auto;
 }
 
 .player-box > img {
