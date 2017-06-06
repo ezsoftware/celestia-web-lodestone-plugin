@@ -13,6 +13,7 @@ class CW_LS_UserProfile {
   }
   private function __construct() {
     add_action( 'show_user_profile' , array( $this , 'show_lodestone_user_profile_fields' ) );
+    add_action( 'edit_user_profile' , array( $this , 'show_lodestone_user_profile_fields' ) );
   }
 
   public function show_lodestone_user_profile_fields($user) {
