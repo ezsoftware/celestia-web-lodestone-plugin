@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Lodestone Scraper
  * Description: Lodestone Scraper by Celestia FC on Hyperion
- * Version: 0.1 (05/15/2017)
+ * Version: 0.5 (05/15/2017)
  * Author: John Ryan - EZ Software Inc
  * Author URI: http://www.example.com
  */
@@ -28,3 +28,5 @@ class CW_Lodestone {
 } 
 
 CW_Lodestone::getInstance();
+
+CW_Cron_Daily::getInstance();

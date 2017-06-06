@@ -15,23 +15,29 @@ class CW_Actions {
     return self::$instance;
   }
   private function __construct() {
-    add_filter("cw-lodestone-get-character", array($this, 'get_character_profile'), 10, 1);
-    add_filter("cw-lodestone-get-fc-list", array($this, 'get_free_company_list'), 10, 1);
-    add_filter("cw-lodestone-search", array($this, 'search_character'), 10, 3);
+    add_filter("cw-lodestone-get-character", array($this, 'get_character_profile'), 10, 2);
+    add_filter("cw-lodestone-get-fc-list", array($this, 'get_free_company_list'), 10, 2);
+    add_filter("cw-lodestone-search", array($this, 'search_character'), 10, 4);
   }
 
-  public function get_character_profile($character_id) {
+  public function get_character_profile($character_data, $character_id) {
     $scraper = CW_Scraper::getInstance();
-    return $scraper->get_character_profile($character_id);
+    $character_data = $scraper->get_character_profile($character_id);
+
+    return $character_data;
   }
 
-  public function get_free_company_list($free_company_id) {
+  public function get_free_company_list($fc_data, $free_company_id) {
     $scraper = CW_Scraper::getInstance();
-    return $scraper->get_member_list($free_company_id);
+    $fc_data = $scraper->get_member_list($free_company_id);
+
+    return $fc_data;
   }
 
-  public function search_character($first_name, $last_name, $world) {
+  public function search_character($search_data, $first_name, $last_name, $world) {
     $scraper = CW_Scraper::getInstance();
-    return $scraper->search($first_name, $last_name, $world);
+    $search_data = $scraper->search($first_name, $last_name, $world);
+
+    return $search_data;
   }
 }
