@@ -17,7 +17,9 @@ class CW_LS_Avatar {
 
   public function get_user_avatar_url($avatar, $id_or_email, $args) {
     $mediaId = get_user_meta($id_or_email, 'avatar_media_id', true);
+    var_dump($mediaId);
     $avatar_url = wp_get_attachment_image_url($mediaId);
+    var_dump($avatar_url);
     if($avatar_url) {
       $avatar = $avatar_url;
     }
