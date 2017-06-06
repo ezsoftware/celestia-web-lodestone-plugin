@@ -24,8 +24,8 @@ class CW_LS_Lodestone {
   }
   private function __construct() {
     CW_LS_Classes::getInstance();
-    register_activation_hook(__FILE__, array('CW_Cron_Daily', 'register_cron_hook'));
-    register_deactivation_hook(__FILE__, array('CW_Cron_Daily', 'deregister_cron_hook'));
+    register_activation_hook(__FILE__, array('CW_LS_Cron_Daily', 'register_cron_hook'));
+    register_deactivation_hook(__FILE__, array('CW_LS_Cron_Daily', 'deregister_cron_hook'));
   }
 } 
 
