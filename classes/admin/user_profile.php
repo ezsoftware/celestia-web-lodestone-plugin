@@ -16,10 +16,9 @@ class CW_LS_UserProfile {
   }
 
   public function show_lodestone_user_profile_fields($user) {
-    var_dump($user);
     $user_data = get_user_meta($user->ID, 'character_profile', true);
     var_dump($user_data);
-    $mediaId = get_user_meta($id_or_email, 'avatar_media_id', true);
+    $mediaId = get_user_meta($user->ID, 'avatar_media_id', true);
     $avatar_url = wp_get_attachment_image_url($mediaId);
     ?>
 
