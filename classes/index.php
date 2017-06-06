@@ -20,5 +20,6 @@ class CW_LS_Classes {
     CW_LS_Api::getInstance();
     CW_LS_Cron_Daily::getInstance();
     CW_LS_GeneralSettings::getInstance();
+    CW_LS_Avatar::getInstance();
   }
 }

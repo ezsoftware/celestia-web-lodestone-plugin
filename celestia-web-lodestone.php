@@ -12,7 +12,7 @@ ini_set('display_errors', 1);
 
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
-require('classes/index.php');
+require_once 'classes/index.php';
  
 class CW_LS_Lodestone {    
   static $instance = null;

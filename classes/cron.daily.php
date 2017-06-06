@@ -1,8 +1,8 @@
 <?php
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
-require_once('class.scrape.php');
-require_once('avatar.php');
+require_once 'class.scrape.php';
+require_once 'avatar.php';
 
 class CW_LS_Cron_Daily {  
   static $instance = null;
