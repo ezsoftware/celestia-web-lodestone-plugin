@@ -3,6 +3,8 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
 require_once 'class.scrape.php';
 
+require_once 'cron.daily.php';
+
 class CW_LS_Api {  
   static $instance = null;
   public static function getInstance() {
@@ -24,6 +26,7 @@ class CW_LS_Api {
     self::addAction('cw_searchCharacter');
     self::addAction('cw_getCharacterProfile');
     self::addAction('cw_getMemberList');
+    self::addAction('cw_run_cron');
   }
 
   private function addAction($action) {
@@ -61,6 +64,12 @@ class CW_LS_Api {
     $response = $scraper->get_member_list($this->getQS('free_company_id'));
     $res_str = json_encode($response);
     echo $res_str;
+    wp_die();
+  }
+
+  public function cw_run_cron() {
+    $cron = CW_LS_Cron_Daily::getInstance();
+    $cron->do_daily_data_sync();
     wp_die();
   }
 }
