@@ -33,6 +33,7 @@ class CW_Cron_Daily {
         $scraper = CW_Scraper::getInstance();
         $characterData = $scraper->get_character_profile($characterId);
         update_user_meta($user_id->ID, 'character_profile', $characterData);
+        update_user_meta($user_id->ID, 'profile_last_updated', date("Y-m-d H:i:s"));
       }
     }
   }
