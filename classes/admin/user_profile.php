@@ -1,7 +1,7 @@
 <?php
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
-require_once "../avatar.php";
+require_once __DIR__."/../avatar.php";
 
 class CW_LS_UserProfile {  
   static $instance = null;
