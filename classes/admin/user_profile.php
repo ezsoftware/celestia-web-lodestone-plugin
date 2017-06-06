@@ -18,6 +18,9 @@ class CW_LS_UserProfile {
 
   public function show_lodestone_user_profile_fields($user) {
     $user_data = get_user_meta($user->ID, 'character_profile', true);
+    if($user_data != null && is_string($user_data)) {
+      $user_data = json_decode($user_data);
+    }
     $mediaId = get_user_meta($user->ID, 'avatar_media_id', true);
     $avatar_url = wp_get_attachment_image_url($mediaId);
     ?>
@@ -33,7 +36,7 @@ class CW_LS_UserProfile {
           <?php
             if($user_data == null) {
             ?>
-              <h2>Lodestone data has not yet been scraped, please wait up to 24 hours</h2>
+              <h2>Lodestone not yet found, please wait</h2>
             <?php
             } else { 
           ?>
