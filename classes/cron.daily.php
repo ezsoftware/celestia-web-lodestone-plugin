@@ -2,6 +2,7 @@
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
 require_once('class.scrape.php');
+require_once('avatar.php');
 
 class CW_Cron_Daily {  
   static $instance = null;
@@ -30,6 +31,7 @@ class CW_Cron_Daily {
       require_once(ABSPATH . 'wp-includes/class-wp-user.php');
     }
     $scraper = CW_Scraper::getInstance();
+    $avatar = CW_Avatar::getInstance();
     $fc_id = get_option( 'fc_lodestone_id', '' );
     $fc_member_list = $scraper->get_member_list($fc_id);
     update_option('fc_member_data', $fc_member_list);
@@ -45,7 +47,7 @@ class CW_Cron_Daily {
         update_user_meta($user_id, 'first_name', $names[0]);
         update_user_meta($user_id, 'last_name', $names[1]);
         update_user_meta($user_id, 'nickname', $characterData['name']);
-        do_action('update_avatar', $characterData->face, $user_id);
+        $avatar->update_user_avatar($characterData['face'], $user_id);
         $member_data = self::get_member_rank($fc_member_list, $character_id);
         $rank = 'ally';
         if($member_data != null) {
