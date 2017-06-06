@@ -20,9 +20,6 @@ class CW_LS_Avatar {
       $user = get_user_by('email', $id_or_email);
       $id_or_email = $user->ID;
     }
-    var_dump($avatar);
-    var_dump($id_or_email);
-    var_dump($args);
     $mediaId = get_user_meta($id_or_email, 'avatar_media_id', true);
     $avatar_url = wp_get_attachment_image_url($mediaId);
     if($avatar_url) {
