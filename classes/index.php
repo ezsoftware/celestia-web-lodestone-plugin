@@ -19,7 +19,8 @@ class CW_LS_Classes {
   private function __construct() {
     CW_LS_Api::getInstance();
     CW_LS_Cron_Daily::getInstance();
-    CW_LS_GeneralSettings::getInstance();
     CW_LS_Avatar::getInstance();
+
+    CW_LS_Classes_Admin::getInstance();
   }
 }
