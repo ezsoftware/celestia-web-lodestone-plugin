@@ -21,7 +21,7 @@ class CW_LS_Avatar {
       $id_or_email = $user->ID;
     }
     $mediaId = get_user_meta($id_or_email, 'avatar_media_id', true);
-    $avatar_url = wp_get_attachment_image_url($mediaId);
+    $avatar_url = wp_get_attachment_image_url($mediaId, 'full');
     if($avatar_url) {
       $size = $args['size'];
       $width = $args['width'];
