@@ -17,7 +17,6 @@ class CW_LS_UserProfile {
 
   public function show_lodestone_user_profile_fields($user) {
     $user_data = get_user_meta($user->ID, 'character_profile', true);
-    var_dump($user_data);
     $mediaId = get_user_meta($user->ID, 'avatar_media_id', true);
     $avatar_url = wp_get_attachment_image_url($mediaId);
     ?>
@@ -41,20 +40,20 @@ class CW_LS_UserProfile {
                 <li class="player-box">
                   <img src="<?php echo $avatar_url; ?>">
                   <span class="player-name">
-                    <?php echo $user_data->name; ?>
+                    <?php echo $user_data['name']; ?>
                   </span>
                   <span class="player-title">
-                    <?php echo $user_data->title; ?>
+                    <?php echo $user_data['title']; ?>
                   </span>
                   <span class="player-world">
-                    <?php echo $user_data->world; ?>
+                    <?php echo $user_data['world']; ?>
                   </span>
                   <span class="player-fc">
-                    <?php echo $user_data->free_company; ?>
+                    <?php echo $user_data['free_company']; ?>
                   </span>
                   <div class="palyer-classes">
                     <?php
-                      foreach($user_data->classes as $class => $level) {
+                      foreach($user_data['classes'] as $class => $level) {
                         ?>
                           <span class="job-class">
                             <span><?php echo $class; ?></span>
