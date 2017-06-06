@@ -34,7 +34,18 @@ class CW_Cron_Daily {
         $characterData = $scraper->get_character_profile($characterId);
         update_user_meta($user_id->ID, 'character_profile', $characterData);
         update_user_meta($user_id->ID, 'profile_last_updated', date("Y-m-d H:i:s"));
+        do_action('update_avatar', $characterData->face, $user_id->ID);
+        //search member list for user's rank, test if they have that role, if not, update their permissions'
       }
     }
+  }
+
+  private function get_user_roles_by_user_id( $user_id ) {
+    $user = get_userdata( $user_id );
+    return empty( $user ) ? array() : $user->roles;
+  }
+
+  private function is_user_in_role( $user_id, $role  ) {
+    return in_array( $role, get_user_roles_by_user_id( $user_id ) );
   }
 }
