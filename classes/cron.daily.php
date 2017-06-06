@@ -53,6 +53,7 @@ class CW_LS_Cron_Daily {
         if($member_data != null) {
           $rank = self::role_to_stub($member_data['rank']);
         }
+        var_dump($rank);
         if(!self::is_user_in_role($user_id, $rank)) {
           $u = new WP_User($user_id);
           $user_roles = self::get_user_roles_by_user_id($user_id);
