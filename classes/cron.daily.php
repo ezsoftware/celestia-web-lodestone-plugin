@@ -41,6 +41,10 @@ class CW_Cron_Daily {
         $characterData = $scraper->get_character_profile($character_id);
         update_user_meta($user_id, 'character_profile', $characterData);
         update_user_meta($user_id, 'profile_last_updated', date("Y-m-d H:i:s"));
+        $names = explode(' ', $characterData['name']);
+        update_user_meta($user_id, 'first_name', $names[0]);
+        update_user_meta($user_id, 'last_name', $names[1]);
+        update_user_meta($user_id, 'nickname', $characterData['name']);
         do_action('update_avatar', $characterData->face, $user_id);
         $member_data = self::get_member_rank($fc_member_list, $character_id);
         $rank = 'ally';
