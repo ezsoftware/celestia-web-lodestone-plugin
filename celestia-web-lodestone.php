@@ -7,8 +7,10 @@
  * Author URI: http://www.example.com
  */
 
+/*
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
+*/
 
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 

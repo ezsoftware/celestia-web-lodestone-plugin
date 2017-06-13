@@ -18,7 +18,7 @@ class CW_LS_Cron_Daily {
 
   static function register_cron_hook() {
     if(!wp_next_scheduled('cw_lodestone_daily_event')) {
-      wp_schedule_event(time(), 'daily', 'cw_lodestone_daily_data_sync');
+      wp_schedule_event(time(), 'twicedaily', 'cw_lodestone_daily_data_sync');
     }
   }
 
