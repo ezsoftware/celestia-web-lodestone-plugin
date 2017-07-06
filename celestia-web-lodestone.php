@@ -34,7 +34,7 @@ class CW_LS_Lodestone {
   }
 
   public function enqueue_styles() {
-
+    wp_enqueue_style( 'cw_ls-style', plugin_dir_url(__FILE__) . 'css/styles.css');
 	}
 
   public function admin_enqueue_styles() {

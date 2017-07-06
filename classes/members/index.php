@@ -1,19 +1,17 @@
 <?php
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
-require_once 'general_settings.php';
-require_once 'user_profile.php';
+require_once 'list.php';
 
-class CW_LS_Admin {  
+class CW_LS_Members {  
   static $instance = null;
   public static function getInstance() {
     if(self::$instance === null) {
-      self::$instance = new CW_LS_Admin();
+      self::$instance = new CW_LS_Members();
     }
     return self::$instance;
   }
   private function __construct() {
-    CW_LS_GeneralSettings::getInstance();
-    CW_LS_UserProfile::getInstance();
+    CW_LS_Members_List::getInstance();
   }
 }
