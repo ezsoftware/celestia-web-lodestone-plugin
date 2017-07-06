@@ -6,3 +6,8 @@
 .member-list-item__name {
     margin-left: 100px;
 }
+
+.member-list_header {
+    font-weight: bold;
+    border-bottom: 1px solid #CCC;
+}
