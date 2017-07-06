@@ -41,6 +41,8 @@ class CW_LS_Members_List {
         return 3;
       case "magistrate":
         return 4;
+      case "high priestess":
+        return 4.5;
       case "archduke":
         return 5;
       case "baron":
@@ -51,6 +53,8 @@ class CW_LS_Members_List {
         return 8;
       default:
         return 9;
+      case "alt":
+        return 10;
     }
   }
 
@@ -73,7 +77,7 @@ class CW_LS_Members_List {
 
     usort($memberList, array($this, 'cmp'));
     $memberListItemHTML = "";
-    foreach($memberList as $index => $member) {
+    foreach($memberList as $member) {
       $listHtml = str_replace('{character_id}', $member['character_id'], $templates->listItem);
       $listHtml = str_replace('{character_name}', $member['name'], $listHtml);
       $listHtml = str_replace('{member_view_icon}', self::getMemberLink($member), $listHtml);

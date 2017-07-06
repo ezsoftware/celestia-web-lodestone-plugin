@@ -1,0 +1,9 @@
+.member-list-item__rank {
+    display: inline-block;
+    width: 100px;
+}
+
+.member-list-item__name {
+    width: calc(100% - 100px);
+    margin-left: 100px;
+}
