@@ -74,11 +74,12 @@ class CW_LS_Members_List {
     usort($memberList, array($this, 'cmp'));
     $memberListItemHTML = "";
     foreach($memberList as $index => $member) {
-      $listHtml = json_decode(json_encode($templates->listItem));
-      $listHtml = str_replace($member['character_id'], '{character_id}', $listHtml);
-      $listHtml = str_replace($member['name'], '{character_name}', $listHtml);
-      $listHtml = str_replace(self::getMemberLink($member), '{member_view_icon}', $listHtml);
-      $listHtml = str_replace($member['rank'], '{rank}', $listHtml);
+      $listHtml = str_replace('{character_id}', $member['character_id'], $templates->listItem);
+      $listHtml = str_replace('{character_name}', $member['name'], $listHtml);
+      $listHtml = str_replace('{member_view_icon}', self::getMemberLink($member), $listHtml);
+      $listHtml = str_replace('{rank}', $member['rank'], $listHtml);
+      $memberListItemHTML .= $listHtml;
     }
+    return str_replace('{list-items}', $memberListItemHTML, $templates->list);
   }
 }
