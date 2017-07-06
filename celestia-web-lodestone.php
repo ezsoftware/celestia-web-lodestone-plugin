@@ -15,6 +15,9 @@ ini_set('display_errors', 1);
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
 require_once 'classes/index.php';
+
+define("CW_LS_ABSPATH", plugin_dir_path(__FILE__));
+define("CW_LS_URLPATH", plugin_dir_url(__FILE__));
  
 class CW_LS_Lodestone {    
   static $instance = null;
@@ -34,11 +37,11 @@ class CW_LS_Lodestone {
   }
 
   public function enqueue_styles() {
-    wp_enqueue_style( 'cw_ls-style', plugin_dir_url(__FILE__) . 'css/styles.css');
+    wp_enqueue_style( 'cw_ls-style', CW_LS_URLPATH . 'css/styles.css');
 	}
 
   public function admin_enqueue_styles() {
-    wp_enqueue_style( 'cw_ls_admin-style', plugin_dir_url(__FILE__) . 'css/admin/styles.css');
+    wp_enqueue_style( 'cw_ls_admin-style', CW_LS_URLPATH . 'css/admin/styles.css');
   }
 } 
 
