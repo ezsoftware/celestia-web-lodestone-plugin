@@ -51,9 +51,13 @@ class CW_LS_Scraper {
     return $chunks[3];
   }
 
+  private function generateClassXPathSelector($element, $class, $extra) {
+    return "//{$element}[contains(concat(' ', normalize-space(@class), ' '), '{$class}')]{$extra}";
+  }
+
   private function get_character_class_levels($dom) {
     $classes = array();
-    $nodes = $this->findNodes($dom, '//div[@class="character__level__list"]/ul/li');
+    $nodes = $this->findNodes($dom, $this->generateClassXPathSelector('div', 'character__level__list', '/ul/li'));
     foreach($nodes as $node) {
       $tmp_dom = new DomDocument();
       $tmp_dom->appendChild($tmp_dom->importNode($node, true));
