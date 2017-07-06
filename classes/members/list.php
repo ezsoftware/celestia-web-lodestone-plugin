@@ -1,11 +1,11 @@
 <?php
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
-class CW_LS_Member_List {
+class CW_LS_Members_List {
   static $instance = null;
   public static function getInstance() {
     if(self::$instance === null) {
-      self::$instance = new CW_LS_Member_List();
+      self::$instance = new CW_LS_Members_List();
     }
     return self::$instance;
   }
