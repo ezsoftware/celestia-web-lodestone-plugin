@@ -35,8 +35,6 @@ class CW_LS_Members_List {
       return "<h3>Invalid or Non-existant FC Membership Data</h3>";
     }
 
-    $members = json_decode($memberList);
-
-    var_dump($members);
+    var_dump($memberList);
   }
 }
