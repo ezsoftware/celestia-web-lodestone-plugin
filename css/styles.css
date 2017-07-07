@@ -18,8 +18,9 @@
     float: left;
 }
 
+
 .class-level {
-    width: 28px;
+    width: 32px;
     display: inline-block;
     background-repeat: no-repeat;
     background-position: top left;
@@ -28,11 +29,14 @@
     font-size: 12px;
     text-shadow: 0 0 2px black;
     font-weight: bold;
-    height: 16px;
-    /* color: RGBA(255,175,0,1); */
+    height: 24px;
     background-color: RGBA(0,0,0,0.5);
-    line-height: 23px;
+    line-height: 35px;
     overflow: hidden;
+}
+
+.class-level.capped {
+  color: RGBA(255,175,0,1);
 }
 
 .gladiator {
