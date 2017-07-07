@@ -1,3 +1,24 @@
+.member-list_items {
+    clear: both;
+}
+
+.member-list_header {
+    font-weight: bold;
+    border-bottom: 1px solid #CCC;
+    height: 24px;
+    margin-bottom: 2px;
+}
+
+.member-list-item {
+    height: 28px;
+    overflow: hidden;
+    border-bottom: 1px dotted RGBA(255,255,255,0.2);
+}
+
+  .member-list-item img {
+      float: left;
+  }
+
 .member-list-item__rank {
     width: 100px;
     float: left;
@@ -9,23 +30,8 @@
     float: left;
 }
 
-.member-list_header {
-    font-weight: bold;
-    border-bottom: 1px solid #CCC;
-}
-
 .member-list-item__classes {
     float: left;
-}
-
-.member-list-item img {
-    float: left;
-}
-
-.member-list-item {
-    height: 28px;
-    overflow: hidden;
-    border-bottom: 1px dotted RGBA(255,255,255,0.2);
 }
 
 .class-level {
