@@ -1,10 +1,12 @@
 .member-list-item__rank {
     width: 100px;
     float: left;
+    clear: both;
 }
 
 .member-list-item__name {
-    margin-left: 100px;
+    width: 170px;
+    float: left;
 }
 
 .member-list_header {
@@ -12,8 +14,37 @@
     border-bottom: 1px solid #CCC;
 }
 
+.member-list-item__classes {
+    float: left;
+}
+
+.class-level {
+    width: 28px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-position: top left;
+    background-size: contain;
+    text-align: right;
+    font-size: 12px;
+    text-shadow: 0 0 2px black;
+    font-weight: bold;
+    height: 16px;
+    /* color: RGBA(255,175,0,1); */
+    background-color: RGBA(0,0,0,0.5);
+    line-height: 23px;
+    overflow: hidden;
+}
+
+.gladiator {
+  background-image: url('images/GLA.png');
+}
+
 .paladin {
   background-image: url('images/PLD.png');
+}
+
+.maurader {
+  background-image: url('images/MRD.png');
 }
 
 .warrior {
@@ -22,6 +53,10 @@
 
 .dark_knight {
   background-image: url('images/DRK.png');
+}
+
+.conjurer {
+  background-image: url('images/CNJ.png');
 }
 
 .white_mage {
@@ -36,12 +71,24 @@
   background-image: url('images/AST.png');
 }
 
+.pugilist {
+  background-image: url('images/PGL.png');
+}
+
 .monk {
   background-image: url('images/MNK.png');
 }
 
+.lancer {
+  background-image: url('images/LNC.png');
+}
+
 .dragoon {
   background-image: url('images/DRG.png');
+}
+
+.rogue {
+  background-image: url('images/ROG.png');
 }
 
 .ninja {
@@ -52,6 +99,10 @@
   background-image: url('images/SAM.png');
 }
 
+.archer {
+  background-image: url('images/ARC.png');
+}
+
 .bard {
   background-image: url('images/BRD.png');
 }
@@ -60,8 +111,16 @@
   background-image: url('images/MCH.png');
 }
 
+.thaumaturge {
+  background-image: url('images/THM.png');
+}
+
 .black_mage {
   background-image: url('images/BLM.png');
+}
+
+.arcanist {
+  background-image: url('images/ACN.png');
 }
 
 .summoner {
@@ -80,7 +139,7 @@
   background-image: url('images/BSM.png');
 }
 
-.armorsmith {
+.armorer {
   background-image: url('images/ARM.png');
 }
 
