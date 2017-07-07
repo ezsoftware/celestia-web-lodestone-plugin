@@ -74,6 +74,8 @@ class CW_LS_Members_List {
     if($memberList === false) {
       return "<h3>Invalid or Non-existant FC Membership Data</h3>";
     }
+    var_dump(get_users());
+    return;
 
     usort($memberList, array($this, 'cmp'));
     $memberListItemHTML = "";

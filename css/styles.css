@@ -11,3 +11,107 @@
     font-weight: bold;
     border-bottom: 1px solid #CCC;
 }
+
+.paladin {
+  background-image: url('images/PLD.png');
+}
+
+.warrior {
+  background-image: url('images/WAR.png');
+}
+
+.dark_knight {
+  background-image: url('images/DRK.png');
+}
+
+.white_mage {
+  background-image: url('images/WHM.png');
+}
+
+.scholar {
+  background-image: url('images/SCH.png');
+}
+
+.astrologian {
+  background-image: url('images/AST.png');
+}
+
+.monk {
+  background-image: url('images/MNK.png');
+}
+
+.dragoon {
+  background-image: url('images/DRG.png');
+}
+
+.ninja {
+  background-image: url('images/NIN.png');
+}
+
+.samurai {
+  background-image: url('images/SAM.png');
+}
+
+.bard {
+  background-image: url('images/BRD.png');
+}
+
+.machinist {
+  background-image: url('images/MCH.png');
+}
+
+.black_mage {
+  background-image: url('images/BLM.png');
+}
+
+.summoner {
+  background-image: url('images/SMN.png');
+}
+
+.red_mage {
+  background-image: url('images/RDM.png');
+}
+
+.carpenter {
+  background-image: url('images/CRP.png');
+}
+
+.blacksmith {
+  background-image: url('images/BSM.png');
+}
+
+.armorsmith {
+  background-image: url('images/ARM.png');
+}
+
+.goldsmith {
+  background-image: url('images/GSM.png');
+}
+
+.leatherworker {
+  background-image: url('images/LTW.png');
+}
+
+.weaver {
+  background-image: url('images/WVR.png');
+}
+
+.alchemist {
+  background-image: url('images/ALC.png');
+}
+
+.culinarian {
+  background-image: url('images/CUL.png');
+}
+
+.miner {
+  background-image: url('images/MIN.png');
+}
+
+.botanist {
+  background-image: url('images/BOT.png');
+}
+
+.fisher {
+  background-image: url('images/FSH.png');
+}
