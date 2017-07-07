@@ -41,19 +41,19 @@ class CW_LS_Members_List {
       case "magistrate":
         return 4;
       case "high priestess":
-        return 4.5;
-      case "archduke":
         return 5;
-      case "baron":
+      case "archduke":
         return 6;
-      case "knight":
+      case "baron":
         return 7;
-      case "soldier":
+      case "knight":
         return 8;
-      default:
+      case "soldier":
         return 9;
-      case "alt":
+      default:
         return 10;
+      case "alt":
+        return 11;
     }
   }
 

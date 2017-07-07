@@ -17,6 +17,7 @@
 
   .member-list-item img {
       float: left;
+      margin-right: 5px;
   }
 
 .member-list-item__rank {
@@ -48,10 +49,12 @@
     background-color: RGBA(0,0,0,0.5);
     line-height: 35px;
     overflow: hidden;
+    opacity: 0.6;
 }
 
 .class-level.capped {
   color: RGBA(255,175,0,1);
+    opacity: 1;
 }
 
 .gladiator {
@@ -62,7 +65,7 @@
   background-image: url('images/PLD.png');
 }
 
-.maurader {
+.marauder {
   background-image: url('images/MRD.png');
 }
 
