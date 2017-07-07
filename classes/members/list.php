@@ -92,10 +92,10 @@ class CW_LS_Members_List {
 
   function getMemberLink($member, $character) {
     if($character !== null) {
-      $avatar = get_avatar($character->ID, 16);
+      $avatar = get_avatar($character->ID, 24);
       return "<a href='/members/{$member['character_id']}'>$avatar</a>";
     }
-    return "";
+    return get_avatar(null, 24);
   }
 
   function getMemberClassList($user) {

@@ -18,6 +18,15 @@
     float: left;
 }
 
+.member-list-item img {
+    float: left;
+}
+
+.member-list-item {
+    height: 28px;
+    overflow: hidden;
+    border-bottom: 1px dotted RGBA(255,255,255,0.2);
+}
 
 .class-level {
     width: 32px;
