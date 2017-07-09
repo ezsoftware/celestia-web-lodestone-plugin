@@ -78,6 +78,7 @@ class CW_LS_Cron_Daily {
       || $rank == 'recruit'
       || $rank == 'soldier'
       || $rank == 'ally'
+	  || $rank == 'alt'
     );
   }
 

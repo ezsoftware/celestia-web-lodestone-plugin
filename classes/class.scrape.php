@@ -84,10 +84,10 @@ class CW_LS_Scraper {
         $tmp_dom->appendChild($tmp_dom->importNode($node, true));
         $results[] = array(
           'id' => $this->search_character_id($tmp_dom),
-          'face' => $this->getNodeAttribute($dom, '//div[@class="entry__chara__face"]/img', 'src'),
-          'name' => $this->getNodeValue($dom, '//p[@class="entry__name"]'),
-          'world' => $this->getNodeValue($dom, '//p[@class="entry__world"]'),
-          'free_company' => $this->getNodeValue($dom, '//a[@class="entry__freecompany__link"]/span')
+          'face' => $this->getNodeAttribute($tmp_dom, '//div[@class="entry__chara__face"]/img', 'src'),
+          'name' => $this->getNodeValue($tmp_dom, '//p[@class="entry__name"]'),
+          'world' => $this->getNodeValue($tmp_dom, '//p[@class="entry__world"]'),
+          'free_company' => $this->getNodeValue($tmp_dom, '//a[@class="entry__freecompany__link"]/span')
         );
       }
       $page++;
