@@ -5,9 +5,9 @@ require_once 'class.request.php';
 
 class CW_LS_Scraper {
   static $instance = null;
-  static $search_url = 'http://na.finalfantasyxiv.com/lodestone/character/?q={first_name}+{last_name}&worldname={server}';
-  static $profile_url = 'http://na.finalfantasyxiv.com/lodestone/character/{character_id}/';
-  static $fc_members_url = 'http://na.finalfantasyxiv.com/lodestone/freecompany/{free_company_id}/member/';
+  static $search_url = 'https://na.finalfantasyxiv.com/lodestone/character/?q={first_name}+{last_name}&worldname={server}';
+  static $profile_url = 'https://na.finalfantasyxiv.com/lodestone/character/{character_id}/';
+  static $fc_members_url = 'https://na.finalfantasyxiv.com/lodestone/freecompany/{free_company_id}/member/';
   public static function getInstance() {
     if(self::$instance === null) {
       self::$instance = new CW_LS_Scraper();
